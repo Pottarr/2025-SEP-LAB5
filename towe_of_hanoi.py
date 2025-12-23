@@ -1,3 +1,5 @@
+import turtle as t
+
 class Hanoi(object):
     def __init__(self, n=3, start="A", workspace="B", destination="C"):
         self.startp = Pole(start, 0, 0)
@@ -34,6 +36,39 @@ class Hanoi(object):
     def solve(self):
         self.move_tower(3, self.startp, self.destinationp, self.workspacep)
 
+class Pole(object):
+	def __init__(self, name="", xpos = 0, ypos = 0, thick = 10, length = 100):
+		self.t = t.turtle()
+		self.pname = name
+		self.stack = []
+		self.toppos = 0
+		self.pxpos = xpos
+		self.pypos = ypos
+		self.pthick = thick
+		self.plength = length
+
+	def showpole(self):
+		self.t.forward(self.thick/2)
+		self.t.left(90)
+		self.t.forward(self.length)
+		self.t.left(90)
+		self.t.forward(self.thick)
+		self.t.left(90)
+		self.t.forward(self.length)
+		self.t.forward(self.thick/2)
+		for d in self.stack:
+			d.showdish()
+	
+	
+	def pushdisk(self, disk):
+		self.toppos += 1
+		disk.newpos(self.xpos, (self.ypos + disk.dheight * self.toppos))
+		self.stack.append(disk)
+  
+	def popdisk(self):
+		self.toppos -= 1
+		self.stack.pop()
+  
 
 
 def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
