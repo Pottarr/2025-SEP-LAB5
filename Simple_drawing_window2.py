@@ -34,9 +34,15 @@ class Simple_drawing_window2(QWidget):
         p.end()
 
         p.begin(self)
-        p.setPen(QColor(100, 127, 0))
-        p.setBrush(QColor(100, 127, 0))
-        p.drawPolygon(QRect(100, 127, 100, 100))
+        p.setPen(QColor(250, 150, 50))
+        p.setBrush(QColor(250, 150, 150))
+        p.drawEllipse(200, 50, 100, 100)
+        p.end()
+
+        p.begin(self)
+        p.setPen(QColor(250, 150, 50))
+        p.setBrush(QColor(250, 150, 150))
+        p.drawEllipse(400, 50, 100, 100)
 
         p.drawPixmap(QRect(200, 100, 320, 320), self.rabbit)
         p.end()
