@@ -1,3 +1,34 @@
+import turtle as t
+
+class Disk(object):
+    def __init__(self, name="", xpos=0, ypos=0, height=20, width=40):
+        self.dname = name
+        self.dxpos = xpos
+        self.dheight = height
+        self.dwidth = width
+        self.t = t.Turtle()
+        self.t.color("brown")
+        self.newpos(xpos, ypos)
+
+    def showdisk(self):
+        self.t.backward(self.dwidth / 2)
+        self.t.begin_fill()
+        for i in range(2):
+            self.t.forward(self.dwidth)
+            self.t.left(90)
+            self.t.forward(self.dheight)
+            self.t.left(90)
+        self.t.end_fill()
+        self.t.forward(self.dwidth/2)
+        
+    def newpos(self, xpos, ypos):
+        self.t.penup()
+        self.t.goto(xpos, ypos)
+        self.t.pendown()
+
+    def cleardisk(self):
+        self.t.clear()
+
 class Hanoi(object):
     def __init__(self, n=3, start="A", workspace="B", destination="C"):
         self.startp = Pole(start, 0, 0)
@@ -35,15 +66,6 @@ class Hanoi(object):
         self.move_tower(3, self.startp, self.destinationp, self.workspacep)
 
 
-
-def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
-    if n == 0:
-        return
-    TowerOfHanoi(n-1, from_rod, aux_rod, to_rod)
-    print("Move disk", n, "from rod", from_rod, "to rod", to_rod)
-    TowerOfHanoi(n-1, aux_rod, to_rod, from_rod)
-
 if __name__ == '__main__':
     h = Hanoi()
     h.solve()
-    
