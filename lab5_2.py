@@ -36,6 +36,8 @@ class Train(Transportation):
    
 # main program
 
+# Pottarr was HERE
+
 travel_cost = 0
 
 trip = [ Walk("KMITL","KMITL SCB Bank", 0.6),
