@@ -9,7 +9,7 @@ class SimpleDrawingWindow(QWidget):
         super().__init__(None)
         self.setWindowTitle("Simple GitHub Drawing")
         self.resize(600, 500)
-        self.rabbit = QPixmap("images/rabbit.png")
+        self.pic = QPixmap("images/Meteor Strike.png")
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -48,9 +48,9 @@ class SimpleDrawingWindow(QWidget):
 
         painter.setPen(QColor(0, 0, 0))
         painter.setFont(QFont("Arial", 14))
-        painter.drawText(50, 420, "Hello from PySide6 🎨")
+        painter.drawText(50, 420, "Stnad by for Meteor Strike☄️")
 
-        painter.drawPixmap(QRect(380, 100, 180, 180), self.rabbit)
+        painter.drawPixmap(QRect(380, 100, 200, 200), self.pic)
 
         painter.end()
 
