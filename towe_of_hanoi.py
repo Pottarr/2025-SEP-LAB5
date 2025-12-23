@@ -29,6 +29,7 @@ class Disk(object):
     def cleardisk(self):
         self.t.clear()
 
+
 class Pole(object):
     def __init__(self, name="", xpos = 0, ypos = 0, thick = 10, length = 100):
         self.t = t.Turtle()
