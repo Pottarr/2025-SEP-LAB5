@@ -30,37 +30,40 @@ class Disk(object):
         self.t.clear()
 
 class Pole(object):
-	def __init__(self, name="", xpos = 0, ypos = 0, thick = 10, length = 100):
-		self.t = t.turtle()
-		self.pname = name
-		self.stack = []
-		self.toppos = 0
-		self.pxpos = xpos
-		self.pypos = ypos
-		self.pthick = thick
-		self.plength = length
+    def __init__(self, name="", xpos = 0, ypos = 0, thick = 10, length = 100):
+        self.t = t.Turtle()
+        self.pname = name
+        self.stack = []
+        self.toppos = 0
+        self.pxpos = xpos
+        self.pypos = ypos
+        self.pthick = thick
+        self.plength = length
+        self.t.penup()
+        self.t.goto(xpos, ypos)
+        self.t.pendown()
 
-	def showpole(self):
-		self.t.forward(self.thick/2)
-		self.t.left(90)
-		self.t.forward(self.length)
-		self.t.left(90)
-		self.t.forward(self.thick)
-		self.t.left(90)
-		self.t.forward(self.length)
-		self.t.forward(self.thick/2)
-		for d in self.stack:
-			d.showdish()
-	
-	
-	def pushdisk(self, disk):
-		self.toppos += 1
-		disk.newpos(self.xpos, (self.ypos + disk.dheight * self.toppos))
-		self.stack.append(disk)
-  
-	def popdisk(self):
-		self.toppos -= 1
-		self.stack.pop()
+    def showpole(self):
+        self.t.forward(self.pthick/2)
+        self.t.left(90)
+        self.t.forward(self.plength)
+        self.t.left(90)
+        self.t.forward(self.pthick)
+        self.t.left(90)
+        self.t.forward(self.plength)
+        self.t.forward(self.pthick/2)
+
+    def pushdisk(self, disk):
+        disk.newpos(self.pxpos, (self.pypos + disk.dheight * self.toppos))
+        self.toppos += 1
+        disk.showdisk()
+        self.stack.append(disk)
+
+    def popdisk(self):
+        self.toppos -= 1
+        d = self.stack.pop()
+        d.cleardisk()
+        return d
     
     
 class Hanoi(object):
@@ -99,7 +102,6 @@ class Hanoi(object):
     def solve(self):
         self.move_tower(3, self.startp, self.destinationp, self.workspacep)
 
-  
 
 if __name__ == '__main__':
     h = Hanoi()
